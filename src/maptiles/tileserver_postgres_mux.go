@@ -29,20 +29,21 @@ func NewTileServerPostgresMux(cacheFile string) *TileServerPostgresMux {
 	t.lmp = NewLayerMultiplex()
 	t.m = NewTileDbPostgresql(cacheFile)
 
-	tilelayers, err := t.m.GetTileLayers()
-	if nil != err {
-		Ligneous.Critical(err)
-		panic(err)
-	}
-	Ligneous.Debug(tilelayers)
-	for i := range tilelayers {
-		t.AddMapnikLayer(tilelayers[i]["name"], tilelayers[i]["source"])
-	}
+	// tilelayers, err := t.m.GetTileLayers()
+	// if nil != err {
+	// 	Ligneous.Critical(err)
+	// 	panic(err)
+	// }
+	// Ligneous.Debug(tilelayers)
+
+	// for i := range tilelayers {
+	// 	t.AddMapnikLayer(tilelayers[i]["name"], tilelayers[i]["source"])
+	// }
 
 	t.startTime = time.Now()
 
 	t.Router = mux.NewRouter()
-	t.Router.HandleFunc("/api/v1/tilelayer/{lyr}", t.GetTileLayer).Methods("Get")
+	// t.Router.HandleFunc("/api/v1/tilelayer/{lyr}", t.GetTileLayer).Methods("Get")
 	t.Router.HandleFunc("/api/v1/tilelayer", t.NewTileLayer).Methods("POST")
 	t.Router.HandleFunc("/api/v1/tilelayers", t.TileLayersHandler).Methods("GET")
 	t.Router.HandleFunc("/ping", PingHandler).Methods("GET")
@@ -77,30 +78,39 @@ func (self *TileServerPostgresMux) AddMapnikLayer(layerName string, stylesheet s
 	}
 
 	// add tile layer
-	self.m.AddLayerMetadata(layerName, stylesheet)
+	// self.m.AddLayerMetadata(layerName, stylesheet)
 	self.lmp.AddRenderer(layerName, stylesheet)
 	return nil
 }
 
-// GetTileLayer gets metadata for tilelayer.
-func (self *TileServerPostgresMux) GetTileLayer(w http.ResponseWriter, r *http.Request) {
-	start := time.Now()
-	vars := mux.Vars(r)
-	lyr := vars["lyr"]
-	metadata, err := self.m.MetaDataHandler(lyr)
-	if nil != err {
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
-		Ligneous.Critical(fmt.Sprintf("%v %v %v [500]", r.RemoteAddr, r.URL.Path, time.Since(start)))
-		return
+func (self *TileServerPostgresMux) hasLayer(layerName string) bool {
+	for k := range self.lmp.layerChans {
+		if k == layerName {
+			return true
+		}
 	}
-	if _, ok := self.lmp.layerChans[lyr]; !ok {
-		http.Error(w, "layer not found", http.StatusNotFound)
-		Ligneous.Error(fmt.Sprintf("%v %v %v [404]", r.RemoteAddr, r.URL.Path, time.Since(start)))
-		return
-	}
-
-	SendJsonResponseFromInterface(w, r, metadata)
+	return false
 }
+
+// GetTileLayer gets metadata for tilelayer.
+// func (self *TileServerPostgresMux) GetTileLayer(w http.ResponseWriter, r *http.Request) {
+// 	start := time.Now()
+// 	vars := mux.Vars(r)
+// 	lyr := vars["lyr"]
+// 	// metadata, err := self.m.MetaDataHandler(lyr)
+// 	// if nil != err {
+// 	// 	http.Error(w, "Internal server error", http.StatusInternalServerError)
+// 	// 	Ligneous.Critical(fmt.Sprintf("%v %v %v [500]", r.RemoteAddr, r.URL.Path, time.Since(start)))
+// 	// 	return
+// 	// }
+// 	if _, ok := self.lmp.layerChans[lyr]; !ok {
+// 		http.Error(w, "layer not found", http.StatusNotFound)
+// 		Ligneous.Error(fmt.Sprintf("%v %v %v [404]", r.RemoteAddr, r.URL.Path, time.Since(start)))
+// 		return
+// 	}
+//
+// 	SendJsonResponseFromInterface(w, r, metadata)
+// }
 
 // NewTileLayer creates new tile layer.
 func (self *TileServerPostgresMux) NewTileLayer(w http.ResponseWriter, r *http.Request) {
@@ -197,17 +207,17 @@ func (self *TileServerPostgresMux) TMSTileMap(w http.ResponseWriter, r *http.Req
 	start := time.Now()
 	vars := mux.Vars(r)
 	lyr := vars["lyr"]
-	metadata, err := self.m.MetaDataHandler(lyr)
-	if nil != err {
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
-		Ligneous.Info(fmt.Sprintf("%v %v %v [500]", r.RemoteAddr, r.URL.Path, time.Since(start)))
-		return
-	}
+	// metadata, err := self.m.MetaDataHandler(lyr)
+	// if nil != err {
+	// 	http.Error(w, "Internal server error", http.StatusInternalServerError)
+	// 	Ligneous.Info(fmt.Sprintf("%v %v %v [500]", r.RemoteAddr, r.URL.Path, time.Since(start)))
+	// 	return
+	// }
 	if _, ok := self.lmp.layerChans[lyr]; !ok {
 		http.Error(w, "layer not found", http.StatusNotFound)
 		Ligneous.Info(fmt.Sprintf("%v %v %v [404]", r.RemoteAddr, r.URL.Path, time.Since(start)))
 	} else {
-		TMSTileMap(start, lyr, metadata["source"], w, r)
+		TMSTileMap(start, lyr, "metadata[source]", w, r)
 	}
 }
 

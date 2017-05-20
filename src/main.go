@@ -34,41 +34,22 @@ var (
 // successive access a tile is much faster.
 func TileserverWithCaching(engine string, layer_config map[string]string) {
 	bind := fmt.Sprintf("0.0.0.0:%v", config.Port)
-	if engine == "postgres" {
-		t := maptiles.NewTileServerPostgresMux(config.Cache)
+	t := maptiles.NewTileServerPostgresMux(config.Cache)
 
-		// for i := range layer_config {
-		// 	t.AddMapnikLayer(i, layer_config[i])
-		// }
-
-		maptiles.Ligneous.Info("Connecting to postgres database:")
-		maptiles.Ligneous.Info("*** ", config.Cache)
-		maptiles.Ligneous.Info(fmt.Sprintf("Magic happens on port %v...", config.Port))
-		srv := &http.Server{
-			Addr:         bind,
-			Handler:      t.Router,
-			ReadTimeout:  5 * time.Second,
-			WriteTimeout: 10 * time.Second,
-		}
-		maptiles.Ligneous.Error(srv.ListenAndServe())
-	} else {
-		t := maptiles.NewTileServerSqliteMux(config.Cache)
-
-		// for i := range layer_config {
-		// 	t.AddMapnikLayer(i, layer_config[i])
-		// }
-
-		maptiles.Ligneous.Info("Connecting to sqlite3 database:")
-		maptiles.Ligneous.Info("*** ", config.Cache)
-		maptiles.Ligneous.Info(fmt.Sprintf("Magic happens on port %v...", config.Port))
-		srv := &http.Server{
-			Addr:         bind,
-			Handler:      t.Router,
-			ReadTimeout:  5 * time.Second,
-			WriteTimeout: 10 * time.Second,
-		}
-		maptiles.Ligneous.Error(srv.ListenAndServe())
+	for i := range layer_config {
+		t.AddMapnikLayer(i, layer_config[i])
 	}
+
+	// maptiles.Ligneous.Info("Connecting to postgres database:")
+	// maptiles.Ligneous.Info("*** ", config.Cache)
+	maptiles.Ligneous.Info(fmt.Sprintf("Magic happens on port %v...", config.Port))
+	srv := &http.Server{
+		Addr:         bind,
+		Handler:      t.Router,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+	}
+	maptiles.Ligneous.Error(srv.ListenAndServe())
 }
 
 func init() {

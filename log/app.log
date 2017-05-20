@@ -313,3 +313,32 @@
 [MapnikServer-0.1.6] 2017-04-07 23:27:56 [INFO] main.go TileserverWithCaching:45 Connecting to postgres database: 
 [MapnikServer-0.1.6] 2017-04-07 23:27:56 [INFO] main.go TileserverWithCaching:46 *** postgres://mapnik:dev@localhost/mbtiles 
 [MapnikServer-0.1.6] 2017-04-07 23:27:56 [INFO] main.go TileserverWithCaching:51 Magic happens on port 8080... 
+[MapnikServer-0.1.6] 2017-05-20 18:12:20 [DEBUG] main.go getConfig:101 {tilecache.mbtiles sqlite map[world:sampledata/world/stylesheet.xml population:sampledata/world_population/population.xml osm:http://tile.openstreetmap.org/{z}/{x}/{y}.png] 8080} 
+[MapnikServer-0.1.6] 2017-05-20 18:12:20 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: population sampledata/world_population/population.xml 
+[MapnikServer-0.1.6] 2017-05-20 18:12:20 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: osm http://tile.openstreetmap.org/{z}/{x}/{y}.png 
+[MapnikServer-0.1.6] 2017-05-20 18:12:20 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: world sampledata/world/stylesheet.xml 
+[MapnikServer-0.1.6] 2017-05-20 18:12:20 [INFO] main.go TileserverWithCaching:50 Magic happens on port 8080... 
+[MapnikServer-0.1.6] 2017-05-20 18:12:32 [INFO] tms.go TMSTileMaps:42 [::1]:47726 /tms/1.0 16.154µs [200] 
+[MapnikServer-0.1.6] 2017-05-20 18:12:37 [INFO] tms.go TMSTileMap:69 [::1]:47726 /tms/1.0/osm 805.214µs [200] 
+[MapnikServer-0.1.6] 2017-05-20 18:12:46 [TRACE] renderer.go HttpGetTileZXY:185 PROXY GET http://tile.openstreetmap.org/0/0/0.png 200 
+[MapnikServer-0.1.6] 2017-05-20 18:12:46 [INFO] tileserver_postgres_mux.go ServeTileRequest:193 [::1]:47798 /tms/1.0/osm/0/0/0.png 163.659791ms [200] 
+[MapnikServer-0.1.6] 2017-05-20 18:14:30 [DEBUG] main.go getConfig:101 {tilecache.mbtiles sqlite map[population:sampledata/world_population/population.xml osm:http://tile.openstreetmap.org/{z}/{x}/{y}.png world:sampledata/world/stylesheet.xml] 8080} 
+[MapnikServer-0.1.6] 2017-05-20 18:14:30 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: world sampledata/world/stylesheet.xml 
+[MapnikServer-0.1.6] 2017-05-20 18:14:30 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: population sampledata/world_population/population.xml 
+[MapnikServer-0.1.6] 2017-05-20 18:14:30 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: osm http://tile.openstreetmap.org/{z}/{x}/{y}.png 
+[MapnikServer-0.1.6] 2017-05-20 18:14:30 [INFO] main.go TileserverWithCaching:50 Magic happens on port 8080... 
+[MapnikServer-0.1.6] 2017-05-20 18:14:33 [TRACE] renderer.go HttpGetTileZXY:185 PROXY GET http://tile.openstreetmap.org/0/0/0.png 200 
+[MapnikServer-0.1.6] 2017-05-20 18:14:33 [INFO] tileserver_postgres_mux.go ServeTileRequest:193 [::1]:47840 /tms/1.0/osm/0/0/0.png 104.640589ms [200] 
+[MapnikServer-0.1.6] 2017-05-20 18:14:42 [INFO] tileserver_postgres_mux.go ServeTileRequest:193 [::1]:47866 /tms/1.0/osm/0/0/0.png 134.96µs [200] 
+[MapnikServer-0.1.6] 2017-05-20 18:25:09 [DEBUG] main.go getConfig:101 {tilecache.mbtiles sqlite map[world:sampledata/world/stylesheet.xml population:sampledata/world_population/population.xml osm:http://tile.openstreetmap.org/{z}/{x}/{y}.png] 8080} 
+[MapnikServer-0.1.6] 2017-05-20 18:25:09 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: osm http://tile.openstreetmap.org/{z}/{x}/{y}.png 
+[MapnikServer-0.1.6] 2017-05-20 18:25:09 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: world sampledata/world/stylesheet.xml 
+[MapnikServer-0.1.6] 2017-05-20 18:25:09 [INFO] tileserver_postgres_mux.go AddMapnikLayer:67 Adding tilelayer: population sampledata/world_population/population.xml 
+[MapnikServer-0.1.6] 2017-05-20 18:25:09 [INFO] main.go TileserverWithCaching:50 Magic happens on port 8080... 
+[MapnikServer-0.1.6] 2017-05-20 18:25:11 [TRACE] mbtilesgenerator_postgres.go fetch:266 REUSE BLOB osm 0 0 0 
+[MapnikServer-0.1.6] 2017-05-20 18:25:11 [INFO] tileserver_postgres_mux.go ServeTileRequest:193 [::1]:47896 /tms/1.0/osm/0/0/0.png 142.065µs [200] 
+[MapnikServer-0.1.6] 2017-05-20 18:27:53 [TRACE] renderer.go HttpGetTileZXY:185 PROXY GET http://tile.openstreetmap.org/1/0/0.png 200 
+[MapnikServer-0.1.6] 2017-05-20 18:27:53 [INFO] tileserver_postgres_mux.go ServeTileRequest:193 [::1]:47918 /tms/1.0/osm/1/0/0.png 232.701472ms [200] 
+[MapnikServer-0.1.6] 2017-05-20 18:27:53 [TRACE] mbtilesgenerator_postgres.go insert:219 INSERT BLOB osm 1 0 1 
+[MapnikServer-0.1.6] 2017-05-20 19:00:59 [INFO] tms.go TMSTileMaps:42 [::1]:48034 /tms/1.0 14.929µs [200] 
+[MapnikServer-0.1.6] 2017-05-20 19:01:06 [INFO] tms.go TMSTileMap:69 [::1]:48042 /tms/1.0/osm 160.206µs [200] 
