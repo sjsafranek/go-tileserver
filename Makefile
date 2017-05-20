@@ -23,8 +23,8 @@ fmt:
 	@GOPATH=${GPATH} gofmt -s -w ${PROJECT_NAME}
 
 get-deps:
-	@GOPATH=${GPATH} go get -v github.com/mattn/go-sqlite3
-	@GOPATH=${GPATH} go get -v github.com/lib/pq
+	# @GOPATH=${GPATH} go get -v github.com/mattn/go-sqlite3
+	# @GOPATH=${GPATH} go get -v github.com/lib/pq
 	@GOPATH=${GPATH} go get -v github.com/cihub/seelog
 	@GOPATH=${GPATH} go get -v github.com/gorilla/mux
 
