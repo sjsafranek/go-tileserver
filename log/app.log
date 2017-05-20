@@ -1,6 +1,0 @@
-[MapnikServer-0.2.0] 2017-05-20 20:01:21 [DEBUG] main.go getConfig:101 {tilecache.mbtiles sqlite map[osm:http://tile.openstreetmap.org/{z}/{x}/{y}.png world:sampledata/world/stylesheet.xml population:sampledata/world_population/population.xml] 8080} 
-[MapnikServer-0.2.0] 2017-05-20 20:01:21 [INFO] tileserver_postgres_mux.go AddMapnikLayer:56 Adding tilelayer: world sampledata/world/stylesheet.xml 
-[MapnikServer-0.2.0] 2017-05-20 20:01:21 [INFO] tileserver_postgres_mux.go AddMapnikLayer:56 Adding tilelayer: population sampledata/world_population/population.xml 
-[MapnikServer-0.2.0] 2017-05-20 20:01:21 [INFO] tileserver_postgres_mux.go AddMapnikLayer:56 Adding tilelayer: osm http://tile.openstreetmap.org/{z}/{x}/{y}.png 
-[MapnikServer-0.2.0] 2017-05-20 20:01:21 [INFO] main.go TileserverWithCaching:50 Magic happens on port 8080... 
-[MapnikServer-0.2.0] 2017-05-20 20:01:27 [INFO] tms.go TMSTileMap:69 [::1]:48308 /tms/1.0/osm 137.551µs [200] 
