@@ -1,22 +1,18 @@
 package maptiles
 
 import (
-	// "database/sql"
+	"bytes"
 	"fmt"
 	"image"
 	"image/png"
-	// "io"
-	"bytes"
 	"io/ioutil"
 	"os"
-	// _ "github.com/lib/pq"
 )
 
 // TileDbPostgresql struct for PostgreSQL MBTile database.
 // MBTiles 1.2-compatible Tile Db with multi-layer support.
 // Was named Mbtiles before, hence the use of *m in methods.
 type TileDbPostgresql struct {
-	// db          *sql.DB
 	requestChan chan TileFetchRequest
 	insertChan  chan TileFetchResult
 	layerIds    map[string]int
@@ -27,7 +23,6 @@ type TileDbPostgresql struct {
 // Creates database tables and initializes tile request channels.
 func NewTileDbPostgresql(path string) *TileDbPostgresql {
 	m := TileDbPostgresql{}
-
 	m.insertChan = make(chan TileFetchResult)
 	m.requestChan = make(chan TileFetchRequest)
 	go m.Run()

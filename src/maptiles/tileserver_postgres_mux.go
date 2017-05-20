@@ -29,17 +29,6 @@ func NewTileServerPostgresMux(cacheFile string) *TileServerPostgresMux {
 	t.lmp = NewLayerMultiplex()
 	t.m = NewTileDbPostgresql(cacheFile)
 
-	// tilelayers, err := t.m.GetTileLayers()
-	// if nil != err {
-	// 	Ligneous.Critical(err)
-	// 	panic(err)
-	// }
-	// Ligneous.Debug(tilelayers)
-
-	// for i := range tilelayers {
-	// 	t.AddMapnikLayer(tilelayers[i]["name"], tilelayers[i]["source"])
-	// }
-
 	t.startTime = time.Now()
 
 	t.Router = mux.NewRouter()
@@ -103,6 +92,20 @@ func (self *TileServerPostgresMux) hasLayer(layerName string) bool {
 // 	// 	Ligneous.Critical(fmt.Sprintf("%v %v %v [500]", r.RemoteAddr, r.URL.Path, time.Since(start)))
 // 	// 	return
 // 	// }
+//
+// 	// 	insert_queries := []string{
+// 	// 		"INSERT INTO metadata(name, value, layer_name) VALUES('name', '" + lyr + "', '" + lyr + "')",
+// 	// 		"INSERT INTO metadata(name, value, layer_name) VALUES('source', '" + stylesheet + "', '" + lyr + "')",
+// 	// 		"INSERT INTO metadata(name, value, layer_name) VALUES('type', 'overlay', '" + lyr + "')",
+// 	// 		"INSERT INTO metadata(name,value,layer_name) VALUES('version', '1', '" + lyr + "')",
+// 	// 		"INSERT INTO metadata(name,value,layer_name) VALUES('description', 'Compatible with MBTiles spec 1.2.', '" + lyr + "')",
+// 	// 		"INSERT INTO metadata(name,value,layer_name) VALUES('format', 'png', '" + lyr + "')",
+// 	// 		"INSERT INTO metadata(name,value,layer_name) VALUES('bounds', '-180.0,-85,180,85', '" + lyr + "')",
+// 	// 		"INSERT INTO metadata(name,value,layer_name) VALUES('attribution', 'sjsafranek', '" + lyr + "')",
+// 	// 	}
+//
+// 	// metadata := map[string]string
+//
 // 	if _, ok := self.lmp.layerChans[lyr]; !ok {
 // 		http.Error(w, "layer not found", http.StatusNotFound)
 // 		Ligneous.Error(fmt.Sprintf("%v %v %v [404]", r.RemoteAddr, r.URL.Path, time.Since(start)))
@@ -207,12 +210,6 @@ func (self *TileServerPostgresMux) TMSTileMap(w http.ResponseWriter, r *http.Req
 	start := time.Now()
 	vars := mux.Vars(r)
 	lyr := vars["lyr"]
-	// metadata, err := self.m.MetaDataHandler(lyr)
-	// if nil != err {
-	// 	http.Error(w, "Internal server error", http.StatusInternalServerError)
-	// 	Ligneous.Info(fmt.Sprintf("%v %v %v [500]", r.RemoteAddr, r.URL.Path, time.Since(start)))
-	// 	return
-	// }
 	if _, ok := self.lmp.layerChans[lyr]; !ok {
 		http.Error(w, "layer not found", http.StatusNotFound)
 		Ligneous.Info(fmt.Sprintf("%v %v %v [404]", r.RemoteAddr, r.URL.Path, time.Since(start)))

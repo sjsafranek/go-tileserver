@@ -13,7 +13,7 @@ GPATH = $(shell pwd)
 
 install: fmt get-deps
 	./install.sh
-	@GOPATH=${GPATH} go build -o TileServer ${PROJECT_NAME}/main.go
+	@GOPATH=${GPATH} go build -o tile_server ${PROJECT_NAME}/main.go
 	# sudo journalctl -f -u tileserver.service
 	# sudo psql -U mapnik -d mbtiles
 	# su - mapnik
