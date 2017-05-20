@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+		<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+
+		<style>
+			#map {
+				height:100%;
+				width:100%;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id="map"></div>
+	</body>
+	<script type="text/javascript">
+
+		var map,
+			baseLayers;
+		var server = 'http://localhost:8080';
+
+		// createTileLayer creates leaflet tilelayer from url
+		function createTileLayer(url) {
+			return L.tileLayer(url, {
+				attribution: '&copy; <a href="https://github.com/sjsafranek/go-mapnik" target="_blank"> Go-Mapnik </a>',
+				reuseTiles: true
+			});
+		}
+
+		function initialize() {
+
+			baseLayers = {
+				"OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+					reuseTiles: true
+				})
+			}
+
+			map = L.map('map',{
+				maxZoom:20,
+				layers: [
+					baseLayers['OpenStreetMap']
+				]
+			}).setView([0,0], 2);
+
+			// Get available tile layers from api request.
+			$.getJSON( server + '/api/v1/tilelayers', {}, function(result) {
+
+				// Check for successful response.
+				if ('ok' === result.status) {
+
+					// Create tilelayer urls and add them to `baseLayers`.
+					for (var i in result.data) {
+						var name = result.data[i];
+						var url  = server + '/tms/1.0/' + name + '/{z}/{x}/{y}.png';
+						baseLayers[name] = createTileLayer(url);
+					}
+
+					// Use `baseLayers` to create a leaflet layer control
+					// and add to map.
+					var layer_control = L.control.layers(baseLayers, {});
+					layer_control.addTo(map);
+
+				} else {
+					// Throw error if response has failed.
+					throw new Error(JSON.stringify(result));
+				}
+
+			} );
+		}
+
+	//	$(function() { initialize(); });
+
+		$(document).ready(initialize);
+
+
+		function newTileLayer() {
+
+			$.ajax({
+				type: "POST",
+				url: server+"/api/v1/tilelayer",
+				data: JSON.stringify({
+					"method": "new_tile_layer",
+					"data": {
+						"name": "esri_darkgrey",
+						"source": "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+					}
+				}),
+				success: function(result) {
+					console.log(result);
+				},
+				dataType: "json"
+			});
+
+		}
+
+
+	</script>
+</html>

@@ -1,0 +1,9 @@
+http://0.0.0.0:8080 {
+	gzip
+	proxy / 0.0.0.0:5001 0.0.0.0:5002 0.0.0.0:5003 {
+		policy round_robin
+		health_check /ping
+		transparent
+	}
+	log access.log
+}
