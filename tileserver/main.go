@@ -21,7 +21,6 @@ type Config struct {
 
 var (
 	config Config
-	// engine string
 	// port string
 	// db_cache string
 	config_file   string
@@ -32,7 +31,7 @@ var (
 // to see the results.
 // The created tiles are cached in an sqlite database (MBTiles 1.2 conform) so
 // successive access a tile is much faster.
-func TileserverWithCaching(engine string, layer_config map[string]string) {
+func TileserverWithCaching(layer_config map[string]string) {
 	bind := fmt.Sprintf("0.0.0.0:%v", config.Port)
 	t := maptiles.NewTileServerPostgresMux(config.Cache)
 
@@ -54,17 +53,9 @@ func TileserverWithCaching(engine string, layer_config map[string]string) {
 
 func init() {
 	// TODO: add config file
-	// flag.StringVar(&port, "p", "8080", "server port")
-	// flag.StringVar(&engine, "e", "sqlite", "database engine [sqlite or postgres]")
-	// flag.StringVar(&db_cache, "d", "tilecache.mbtiles", "tile cache database")
 	flag.StringVar(&config_file, "c", "", "tile server config")
 	flag.BoolVar(&print_version, "v", false, "version")
 	flag.Parse()
-	// if engine != "sqlite" {
-	// 	if engine != "postgres" {
-	// 		logger.Fatal("Unsupported database engines")
-	// 	}
-	// }
 	if print_version {
 		fmt.Println(maptiles.SERVER_NAME + "-" + maptiles.VERSION)
 		os.Exit(1)
@@ -86,13 +77,6 @@ func getConfig() {
 			os.Exit(1)
 		}
 
-		if config.Engine != "sqlite" {
-			if config.Engine != "postgres" {
-				fmt.Println("Unsupported database engine")
-				os.Exit(1)
-			}
-		}
-
 		maptiles.Ligneous.Debug(config)
 	} else {
 		fmt.Println("Config file not found")
@@ -104,8 +88,5 @@ func getConfig() {
 // the necessary OSM sources. Consult OSM wiki for details.
 func main() {
 	getConfig()
-	TileserverWithCaching(config.Engine, config.Layers)
+	TileserverWithCaching(config.Layers)
 }
-
-// sudo su mapnik
-// psql -d mbtiles -U mapnik -W
