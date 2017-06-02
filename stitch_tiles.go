@@ -8,11 +8,13 @@ import (
 	"net/http"
 	"sort"
 	"time"
+	"strings"
 
 	"image"
 	"image/color"
 	"image/draw"
 	"image/png"
+	"image/jpeg"
 	"os"
 
 	"flag"
@@ -143,7 +145,10 @@ func GetTilePngBytesFromUrl(tile_url string) []byte {
 func BytesToPngImage(b []byte) image.Image {
 	img, err := png.Decode(bytes.NewReader(b))
 	if nil != err {
-		panic(err)
+		img, err = jpeg.Decode(bytes.NewReader(b))
+		if nil != err {
+			panic(err)
+		}
 	}
 	return img
 }
@@ -236,7 +241,16 @@ func main() {
 
 	for _, v := range tiles {
 		tile_url := fmt.Sprintf("/%v/%v/%v.png", v.z, v.x, v.y)
-		data := GetTilePngBytesFromUrl(TILELAYER_URL + tile_url)
+		basemap_url := TILELAYER_URL + tile_url
+		if (strings.Contains(TILELAYER_URL, "{z}")) {
+			basemap_url = TILELAYER_URL
+			basemap_url = strings.Replace(basemap_url, "{z}", fmt.Sprintf("%v", v.z), 1)
+			basemap_url = strings.Replace(basemap_url, "{y}", fmt.Sprintf("%v", v.y), 1)
+			basemap_url = strings.Replace(basemap_url, "{x}", fmt.Sprintf("%v", v.x), 1)
+		}
+		data := GetTilePngBytesFromUrl(basemap_url)
+		// tile_url := fmt.Sprintf("/%v/%v/%v.png", v.z, v.x, v.y)
+		// data := GetTilePngBytesFromUrl(TILELAYER_URL + tile_url)
 		if !COOK {
 			img := BytesToPngImage(data)
 			tiles_map[v.x] = append(tiles_map[v.x], img)
