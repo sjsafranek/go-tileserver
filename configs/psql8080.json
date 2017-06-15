@@ -1,6 +1,5 @@
 {
-    "cache": "postgres://mapnik:dev@localhost/mbtiles",
-    "engine": "postgres",
+    "cache": "cache",
     "layers": {
         "world": "sampledata/world/stylesheet.xml",
         "population": "sampledata/world_population/population.xml",

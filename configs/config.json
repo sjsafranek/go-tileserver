@@ -1,6 +1,5 @@
 {
-	"cache": "tilecache.mbtiles",
-	"engine": "sqlite",
+	"cache": "cache",
 	"layers": {
 		"world": "sampledata/world/stylesheet.xml",
         "population": "sampledata/world_population/population.xml",
