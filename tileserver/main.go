@@ -33,7 +33,7 @@ var (
 // successive access a tile is much faster.
 func TileserverWithCaching(layer_config map[string]string) {
 	bind := fmt.Sprintf("0.0.0.0:%v", config.Port)
-	t := maptiles.NewTileServerPostgresMux(config.Cache)
+	t := maptiles.NewTileServerMux(config.Cache)
 
 	for i := range layer_config {
 		t.AddMapnikLayer(i, layer_config[i])

@@ -3,13 +3,23 @@ Change Log
 
 ## [Unreleased]
 
+## [0.2.1] - 2017-06-14
+### Fixed
+ - Cleanup of tiling server
+
+
+
+## [0.2.0] - 2017-05-15
+### Added
+ - Cache tiles to file system
+### Removed
+ - remove database caching
 
 ## [0.1.6] - 2017-04-07
 ### Added
  - restapi route for adding and getting tilelayers
 ### Changed
  - Read tilelayers from database
-
 
 ## [0.1.5] - 2017-04-03
 ### Added

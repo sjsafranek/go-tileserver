@@ -15,7 +15,7 @@ Description=The TileServer Server
 [Service]
 TimeoutStartSec=10
 RestartSec=10
-ExecStart=/vagrant/TileServer -c configs/psql8080.json
+ExecStart=/vagrant/tile_server -c configs/psql8080.json
 WorkingDirectory=/vagrant
 Restart=on-failure
 
@@ -31,10 +31,14 @@ SCRIPT
 # Setup database tables and models
 $setup_db = <<SCRIPT
 cd /vagrant
+sudo -u postgres psql -c "CREATE USER vagrant WITH PASSWORD 'dev'"
 sudo -u postgres psql -c "CREATE USER mapnik WITH PASSWORD 'dev'"
-sudo -u postgres psql -c "CREATE DATABASE mbtiles"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE mbtiles TO mapnik"
+sudo -u postgres psql -c "CREATE DATABASE mapnik"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE mapnik TO mapnik"
 sudo -u postgres psql -c "ALTER USER mapnik WITH SUPERUSER;"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE mapnik TO vagrant"
+sudo -u postgres psql -c "ALTER USER vagrant WITH SUPERUSER;"
+sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology; CREATE EXTENSION fuzzystrmatch; CREATE EXTENSION postgis_tiger_geocoder;" mapnik
 SCRIPT
 #sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology; CREATE EXTENSION fuzzystrmatch; CREATE EXTENSION postgis_tiger_geocoder;" mbtiles
 
