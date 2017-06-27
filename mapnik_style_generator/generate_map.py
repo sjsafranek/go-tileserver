@@ -7,9 +7,9 @@ from osgeo import ogr
 from osgeo import osr
 
 
-label_font = "DejaVu Sans Book"
-# label_font = "DejaVu Sans Bold"
-
+# label_font = "DejaVu Sans Book"
+label_font = "DejaVu Sans Bold"
+# label_font = "book-fonts"
 
 def getAreaStatistics(shapefile):
     areas = []
@@ -99,19 +99,22 @@ def getLabelStyleForZooms(label_field):
                     <Filter>([mapnik::geometry_type]=3)</Filter>   <!-- Polyon -->
                     <MaxScaleDenominator>{0}</MaxScaleDenominator>
                     <MinScaleDenominator>{1}</MinScaleDenominator>
-                    <TextSymbolizer avoid-edges="true" face-name="{5}" size="{4}" halo-radius="0.85">[{3}]</TextSymbolizer>
+                    <TextSymbolizer avoid-edges="true" face-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
+                    <!-- <TextSymbolizer avoid-edges="true" fontset-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer> -->
                 </Rule>
                 <Rule>
                     <Filter>([mapnik::geometry_type]=2)</Filter>   <!-- LineString -->
                     <MaxScaleDenominator>{0}</MaxScaleDenominator>
                     <MinScaleDenominator>{1}</MinScaleDenominator>
                     <TextSymbolizer avoid-edges="true" face-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
+                    <!-- <TextSymbolizer avoid-edges="true" fontset-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer> -->
                 </Rule>
                 <Rule>
                     <Filter>([mapnik::geometry_type]=1)</Filter>   <!-- Point -->
                     <MaxScaleDenominator>{0}</MaxScaleDenominator>
                     <MinScaleDenominator>{1}</MinScaleDenominator>
                     <TextSymbolizer avoid-edges="true" face-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
+                    <!-- <TextSymbolizer avoid-edges="true" fontset-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer> -->
                 </Rule>'''.format( getMaxScaleByZoom(z), getMinScaleByZoom(z), getFontSizeByZoom(z), label_field, getFontSizeByZoom(z)+6, label_font )
         rules += rule
     return rules
@@ -120,6 +123,18 @@ def getLabelStyleForZooms(label_field):
 def buildStylesheet(shapefile, projection, label_style):
     stylesheet = '''<?xml version="1.0" encoding="utf-8"?>
     <Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+
+<!--
+        <FontSet name="bold-fonts">
+            <Font face-name="DejaVu Sans Bold"></Font>
+        </FontSet>
+        <FontSet name="book-fonts">
+            <Font face-name="DejaVu Sans Book"></Font>
+        </FontSet>
+        <FontSet name="oblique-fonts">
+            <Font face-name="DejaVu Sans Oblique"></Font>
+        </FontSet>
+-->
         <Style name="layer">
             <Rule>
                 <Filter>([mapnik::geometry_type]=3)</Filter>

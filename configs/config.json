@@ -1,9 +1,10 @@
 {
-	"cache": "cache",
-	"layers": {
-		"world": "sampledata/world/stylesheet.xml",
+    "cache": "cache",
+    "layers": {
+        "world": "sampledata/world/stylesheet.xml",
         "population": "sampledata/world_population/population.xml",
-		"osm": "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
-	},
-	"port": 8080
+		"osm": "http://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "test": "mapnik_style_generator/style.xml"
+    },
+    "port": 8080
 }

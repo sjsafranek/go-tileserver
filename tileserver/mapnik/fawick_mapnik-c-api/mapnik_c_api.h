@@ -12,12 +12,8 @@ extern "C"
 {
 #endif
 
-// MAPNIKCAPICALL int mapnik_register_datasources(const char* path, char** err);
-// MAPNIKCAPICALL int mapnik_register_fonts(const char* path, char** err);
-// Monkey Patch
-MAPNIKCAPICALL int mapnik_register_datasources(const char* path);
-MAPNIKCAPICALL int mapnik_register_fonts(const char* path);
-//.end
+MAPNIKCAPICALL int mapnik_register_datasources(const char* path, char** err);
+MAPNIKCAPICALL int mapnik_register_fonts(const char* path, char** err);
 MAPNIKCAPICALL const char * mapnik_version_string();
 
 
@@ -89,17 +85,6 @@ MAPNIKCAPICALL void mapnik_map_zoom_to_box(mapnik_map_t * m, mapnik_bbox_t * b);
 MAPNIKCAPICALL mapnik_projection_t * mapnik_map_projection(mapnik_map_t *m);
 
 MAPNIKCAPICALL mapnik_image_t * mapnik_map_render_to_image(mapnik_map_t * m);
-
-
-
-
-
-// Monkey Patch
-MAPNIKCAPICALL const char * mapnik_register_last_error();
-//.end
-
-
-
 
 #ifdef __cplusplus
 }

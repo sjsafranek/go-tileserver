@@ -6,74 +6,34 @@ import "C"
 
 import (
 	"errors"
-	"fmt"
-	"os"
 	"unsafe"
 )
 
 func init() {
 	// register default datasources path and fonts path like the python bindings do
-	if err := RegisterDatasources(pluginPath); err != nil {
-		fmt.Fprintf(os.Stderr, "MAPNIK: %s\n", err)
-	}
-	if err := RegisterFonts(fontPath); err != nil {
-		fmt.Fprintf(os.Stderr, "MAPNIK: %s\n", err)
-	}
+	RegisterDatasources(pluginPath)
+	RegisterFonts(fontPath)
 }
-
-// RegisterDatasources adds path to the Mapnik plugin search path.
-func RegisterDatasources(path string) error {
-	cs := C.CString(path)
-	defer C.free(unsafe.Pointer(cs))
-	if C.mapnik_register_datasources(cs) == 0 {
-		e := C.GoString(C.mapnik_register_last_error())
-		if e != "" {
-			return errors.New("registering datasources: " + e)
-		}
-		return errors.New("error while registering datasources")
-	}
-	return nil
-}
-
-// RegisterDatasources adds path to the Mapnik fonts search path.
-func RegisterFonts(path string) error {
-	cs := C.CString(path)
-	defer C.free(unsafe.Pointer(cs))
-	if C.mapnik_register_fonts(cs) == 0 {
-		e := C.GoString(C.mapnik_register_last_error())
-		if e != "" {
-			return errors.New("registering fonts: " + e)
-		}
-		return errors.New("error while registering fonts")
-	}
-	return nil
-}
-
-// func init() {
-// 	// register default datasources path and fonts path like the python bindings do
-// 	RegisterDatasources(pluginPath)
-// 	RegisterFonts(fontPath)
-// }
 
 func Version() string {
 	return "Mapnik " + C.GoString(C.mapnik_version_string())
 }
 
-// func RegisterDatasources(path string) {
-// 	cs := C.CString(path)
-// 	defer C.free(unsafe.Pointer(cs))
-// 	err := C.CString(path)
-// 	defer C.free(unsafe.Pointer(err))
-// 	C.mapnik_register_datasources(cs, &err)
-// }
-//
-// func RegisterFonts(path string) {
-// 	cs := C.CString(path)
-// 	defer C.free(unsafe.Pointer(cs))
-// 	err := C.CString(path)
-// 	defer C.free(unsafe.Pointer(err))
-// 	C.mapnik_register_fonts(cs, &err)
-// }
+func RegisterDatasources(path string) {
+	cs := C.CString(path)
+	defer C.free(unsafe.Pointer(cs))
+	err := C.CString(path)
+	defer C.free(unsafe.Pointer(err))
+	C.mapnik_register_datasources(cs, &err)
+}
+
+func RegisterFonts(path string) {
+	cs := C.CString(path)
+	defer C.free(unsafe.Pointer(cs))
+	err := C.CString(path)
+	defer C.free(unsafe.Pointer(err))
+	C.mapnik_register_fonts(cs, &err)
+}
 
 // Point in 2D space
 type Coord struct {
