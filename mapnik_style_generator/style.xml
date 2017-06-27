@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+  <Style name="layer">
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <PolygonSymbolizer fill="rgb(242,239,249)"/>
+      <LineSymbolizer stroke-width="0.15"/>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <LineSymbolizer stroke-width="0.5"/>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MarkersSymbolizer fill="rgb(0,0,0)" width="3" height="3"/>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>279541131</MinScaleDenominator>
+      <MaxScaleDenominator>559082264</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="12" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>279541131</MinScaleDenominator>
+      <MaxScaleDenominator>559082264</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="6" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>279541131</MinScaleDenominator>
+      <MaxScaleDenominator>559082264</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="6" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>139770565</MinScaleDenominator>
+      <MaxScaleDenominator>279541132</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="12" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>139770565</MinScaleDenominator>
+      <MaxScaleDenominator>279541132</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="6" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>139770565</MinScaleDenominator>
+      <MaxScaleDenominator>279541132</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="6" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>69885282</MinScaleDenominator>
+      <MaxScaleDenominator>139770566</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="12" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>69885282</MinScaleDenominator>
+      <MaxScaleDenominator>139770566</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="6" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>69885282</MinScaleDenominator>
+      <MaxScaleDenominator>139770566</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="6" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>34942641</MinScaleDenominator>
+      <MaxScaleDenominator>69885283</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="13" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>34942641</MinScaleDenominator>
+      <MaxScaleDenominator>69885283</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="7" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>34942641</MinScaleDenominator>
+      <MaxScaleDenominator>69885283</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="7" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>17471320</MinScaleDenominator>
+      <MaxScaleDenominator>34942642</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="13" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>17471320</MinScaleDenominator>
+      <MaxScaleDenominator>34942642</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="7" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>17471320</MinScaleDenominator>
+      <MaxScaleDenominator>34942642</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="7" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>8735659</MinScaleDenominator>
+      <MaxScaleDenominator>17471321</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="14" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>8735659</MinScaleDenominator>
+      <MaxScaleDenominator>17471321</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="8" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>8735659</MinScaleDenominator>
+      <MaxScaleDenominator>17471321</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="8" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>4367829</MinScaleDenominator>
+      <MaxScaleDenominator>8735660</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="15" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>4367829</MinScaleDenominator>
+      <MaxScaleDenominator>8735660</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="9" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>4367829</MinScaleDenominator>
+      <MaxScaleDenominator>8735660</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="9" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>2183914</MinScaleDenominator>
+      <MaxScaleDenominator>4367830</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="15" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>2183914</MinScaleDenominator>
+      <MaxScaleDenominator>4367830</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="9" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>2183914</MinScaleDenominator>
+      <MaxScaleDenominator>4367830</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="9" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>1091957</MinScaleDenominator>
+      <MaxScaleDenominator>2183915</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="16" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>1091957</MinScaleDenominator>
+      <MaxScaleDenominator>2183915</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>1091957</MinScaleDenominator>
+      <MaxScaleDenominator>2183915</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>545978</MinScaleDenominator>
+      <MaxScaleDenominator>1091958</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="17" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>545978</MinScaleDenominator>
+      <MaxScaleDenominator>1091958</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="11" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>545978</MinScaleDenominator>
+      <MaxScaleDenominator>1091958</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="11" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>272988</MinScaleDenominator>
+      <MaxScaleDenominator>545979</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="18" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>272988</MinScaleDenominator>
+      <MaxScaleDenominator>545979</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="12" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>272988</MinScaleDenominator>
+      <MaxScaleDenominator>545979</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="12" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>136494</MinScaleDenominator>
+      <MaxScaleDenominator>272989</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="19" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>136494</MinScaleDenominator>
+      <MaxScaleDenominator>272989</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="13" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>136494</MinScaleDenominator>
+      <MaxScaleDenominator>272989</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="13" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>68246</MinScaleDenominator>
+      <MaxScaleDenominator>136495</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="20" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>68246</MinScaleDenominator>
+      <MaxScaleDenominator>136495</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="14" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>68246</MinScaleDenominator>
+      <MaxScaleDenominator>136495</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="14" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>34123</MinScaleDenominator>
+      <MaxScaleDenominator>68247</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="22" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>34123</MinScaleDenominator>
+      <MaxScaleDenominator>68247</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="16" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>34123</MinScaleDenominator>
+      <MaxScaleDenominator>68247</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="16" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>17061</MinScaleDenominator>
+      <MaxScaleDenominator>34124</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="23" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>17061</MinScaleDenominator>
+      <MaxScaleDenominator>34124</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="17" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>17061</MinScaleDenominator>
+      <MaxScaleDenominator>34124</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="17" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>8530</MinScaleDenominator>
+      <MaxScaleDenominator>17062</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="25" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>8530</MinScaleDenominator>
+      <MaxScaleDenominator>17062</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="19" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>8530</MinScaleDenominator>
+      <MaxScaleDenominator>17062</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="19" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>4264</MinScaleDenominator>
+      <MaxScaleDenominator>8531</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="26" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>4264</MinScaleDenominator>
+      <MaxScaleDenominator>8531</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="20" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>4264</MinScaleDenominator>
+      <MaxScaleDenominator>8531</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="20" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>2132</MinScaleDenominator>
+      <MaxScaleDenominator>4265</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="28" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>2132</MinScaleDenominator>
+      <MaxScaleDenominator>4265</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="22" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>2132</MinScaleDenominator>
+      <MaxScaleDenominator>4265</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="22" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>1065</MinScaleDenominator>
+      <MaxScaleDenominator>2133</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="30" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>1065</MinScaleDenominator>
+      <MaxScaleDenominator>2133</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="24" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>1065</MinScaleDenominator>
+      <MaxScaleDenominator>2133</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="24" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MinScaleDenominator>532</MinScaleDenominator>
+      <MaxScaleDenominator>1066</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="33" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MinScaleDenominator>532</MinScaleDenominator>
+      <MaxScaleDenominator>1066</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="27" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MinScaleDenominator>532</MinScaleDenominator>
+      <MaxScaleDenominator>1066</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="27" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=3)</Filter>
+      <MaxScaleDenominator>533</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="36" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=2)</Filter>
+      <MaxScaleDenominator>533</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="30" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>([mapnik::geometry_type]=1)</Filter>
+      <MaxScaleDenominator>533</MaxScaleDenominator>
+      <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Bold" size="30" halo-radius="0.85">[NAME]</TextSymbolizer>
+    </Rule>
+  </Style>
+  <Layer name="layer" srs="+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs ">
+    <StyleName>layer</StyleName>
+    <Datasource>
+      <Parameter name="file">data/world_merc.shp</Parameter>
+      <Parameter name="type">shape</Parameter>
+    </Datasource>
+  </Layer>
+</Map>
