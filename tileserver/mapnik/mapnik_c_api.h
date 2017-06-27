@@ -15,6 +15,12 @@ extern "C"
 // MAPNIKCAPICALL int mapnik_register_datasources(const char* path, char** err);
 // MAPNIKCAPICALL int mapnik_register_fonts(const char* path, char** err);
 // Monkey Patch
+#include <mapnik/version.hpp>
+const int mapnik_version = MAPNIK_VERSION;
+const int mapnik_version_major = MAPNIK_MAJOR_VERSION;
+const int mapnik_version_minor = MAPNIK_MINOR_VERSION;
+const int mapnik_version_patch = MAPNIK_PATCH_VERSION;
+
 MAPNIKCAPICALL int mapnik_register_datasources(const char* path);
 MAPNIKCAPICALL int mapnik_register_fonts(const char* path);
 //.end

@@ -49,15 +49,34 @@ func RegisterFonts(path string) error {
 	return nil
 }
 
+type version struct {
+	Numeric int
+	Major   int
+	Minor   int
+	Patch   int
+	String  string
+}
+
+var Version version
+
+func init() {
+	Version.Numeric = int(C.mapnik_version)
+	Version.Major = int(C.mapnik_version_major)
+	Version.Minor = int(C.mapnik_version_minor)
+	Version.Patch = int(C.mapnik_version_patch)
+	Version.String = fmt.Sprintf("%d.%d.%d", Version.Major, Version.Minor, Version.Patch)
+	fmt.Printf("%v\n", Version.String)
+}
+
 // func init() {
 // 	// register default datasources path and fonts path like the python bindings do
 // 	RegisterDatasources(pluginPath)
 // 	RegisterFonts(fontPath)
 // }
 
-func Version() string {
-	return "Mapnik " + C.GoString(C.mapnik_version_string())
-}
+// func Version() string {
+// 	return "Mapnik " + C.GoString(C.mapnik_version_string())
+// }
 
 // func RegisterDatasources(path string) {
 // 	cs := C.CString(path)

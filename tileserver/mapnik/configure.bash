@@ -10,7 +10,7 @@ package mapnik
 import "C"
 
 const (
-	fontPath = "$(mapnik-config --fonts)"
+	fontPath = "$(mapnik-config --fonts)/truetype/ttf-dejavu"
 	pluginPath = "$(mapnik-config --input-plugins)"
 )
 
