@@ -9,7 +9,7 @@ from osgeo import osr
 
 # label_font = "DejaVu Sans Book"
 label_font = "DejaVu Sans Bold"
-# label_font = "book-fonts"
+
 
 def getAreaStatistics(shapefile):
     areas = []
@@ -19,11 +19,12 @@ def getAreaStatistics(shapefile):
     for feature in layer:
         geom = feature.GetGeometryRef()
         areas.append( geom.GetArea() )
-    print('mean',   numpy.mean(areas))
-    print('stddev', numpy.std(areas))
-    print('min',   numpy.min(areas))
-    print('max',   numpy.max(areas))
-    return areas
+    return {
+        'mean',   numpy.mean(areas),
+        'stddev', numpy.std(areas),
+        'min',   numpy.min(areas),
+        'max',   numpy.max(areas)
+    }
 
 
 # http://wiki.openstreetmap.org/wiki/MinScaleDenominator
@@ -52,25 +53,44 @@ zoomScales = {
     '21': 1     # set limit
 }
 
+zoomFontSizes = {
+    '0':  5,
+    '1':  5,
+    '2':  6,
+    '3':  7,
+    '4':  8,
+    '5':  8,
+    '6':  10,
+    '7':  12,
+    '8':  14,
+    '9':  16,
+    '10': 17,
+    '11': 18,
+    '12': 19,
+    '13': 20,
+    '14': 22,
+    '15': 24,
+    '16': 24,
+    '17': 26,
+    '18': 26,
+    '19': 28,
+    '20': 30
+}
+
 def getBaseFontSizeByZoom(zoom):
     if zoom < 0:
         raise ValueError('Cannot have negative zoom level')
     elif zoom > 20:
         raise ValueError('Zoom out of range')
-
-    min_size = 6
-    max_size = 34
-
-    # normalized = (val - min) / (max-min)
-    #normalized_zoom = (zoom - 0.0) / (20.0-0.0)
-    #font_size = (normalized_zoom * (34 - 6)) + 6
-
-    k = 0.1
-    # k = 0.05
-    font_size = 24 * ((math.e**(k*zoom)-1)/(math.e**(20*k) - 1)) + 6
-
-    font_size = int(font_size)
-    return font_size
+    print(zoom, zoomFontSizes[str(zoom)])
+    return zoomFontSizes[str(zoom)]
+    # min_size = 6
+    # max_size = 34
+    # k = 0.1
+    # font_size = 24 * ((math.e**(k*zoom)-1)/(math.e**(20*k) - 1)) + 6
+    # font_size = int(font_size)
+    # print(zoom, font_size)
+    # return font_size
 
 
 def getFontSizeByZoom(zoom):
@@ -92,30 +112,29 @@ def getMaxScaleByZoom(zoom):
     return zoomScales[str(zoom)]
 
 
-def getLabelStyleForZooms(label_field):
+def getLabelStyleForZooms(shapefile, label_field):
+    stats = getAreaStatistics(shapefile)
     rules = ''
     for z in range(0,21):
+        base_font_size = getFontSizeByZoom(z)
         rule = '''<Rule>
                     <Filter>([mapnik::geometry_type]=3)</Filter>   <!-- Polyon -->
                     <MaxScaleDenominator>{0}</MaxScaleDenominator>
                     <MinScaleDenominator>{1}</MinScaleDenominator>
-                    <TextSymbolizer avoid-edges="true" face-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
-                    <!-- <TextSymbolizer avoid-edges="true" fontset-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer> -->
+                    <TextSymbolizer avoid-edges="true" face-name="{4}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
                 </Rule>
                 <Rule>
                     <Filter>([mapnik::geometry_type]=2)</Filter>   <!-- LineString -->
                     <MaxScaleDenominator>{0}</MaxScaleDenominator>
                     <MinScaleDenominator>{1}</MinScaleDenominator>
-                    <TextSymbolizer avoid-edges="true" face-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
-                    <!-- <TextSymbolizer avoid-edges="true" fontset-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer> -->
+                    <TextSymbolizer avoid-edges="true" face-name="{4}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
                 </Rule>
                 <Rule>
                     <Filter>([mapnik::geometry_type]=1)</Filter>   <!-- Point -->
                     <MaxScaleDenominator>{0}</MaxScaleDenominator>
                     <MinScaleDenominator>{1}</MinScaleDenominator>
-                    <TextSymbolizer avoid-edges="true" face-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
-                    <!-- <TextSymbolizer avoid-edges="true" fontset-name="{5}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer> -->
-                </Rule>'''.format( getMaxScaleByZoom(z), getMinScaleByZoom(z), getFontSizeByZoom(z), label_field, getFontSizeByZoom(z)+6, label_font )
+                    <TextSymbolizer avoid-edges="true" face-name="{4}" size="{2}" halo-radius="0.85">[{3}]</TextSymbolizer>
+                </Rule>'''.format( getMaxScaleByZoom(z), getMinScaleByZoom(z), base_font_size, label_field, label_font )
         rules += rule
     return rules
 
@@ -123,18 +142,6 @@ def getLabelStyleForZooms(label_field):
 def buildStylesheet(shapefile, projection, label_style):
     stylesheet = '''<?xml version="1.0" encoding="utf-8"?>
     <Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
-
-<!--
-        <FontSet name="bold-fonts">
-            <Font face-name="DejaVu Sans Bold"></Font>
-        </FontSet>
-        <FontSet name="book-fonts">
-            <Font face-name="DejaVu Sans Book"></Font>
-        </FontSet>
-        <FontSet name="oblique-fonts">
-            <Font face-name="DejaVu Sans Oblique"></Font>
-        </FontSet>
--->
         <Style name="layer">
             <Rule>
                 <Filter>([mapnik::geometry_type]=3)</Filter>
@@ -161,12 +168,10 @@ def buildStylesheet(shapefile, projection, label_style):
     </Map>'''
     return stylesheet.format(shapefile, projection, label_style)
 
-
-def getLabelStyle(label_field):
-    return '''<Rule>
-                <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Book" size="8" halo-radius="0.85">[{0}]</TextSymbolizer>
-            </Rule>'''.format(label_field)
-
+# def getLabelStyle(label_field):
+#     return '''<Rule>
+#                 <TextSymbolizer avoid-edges="true" face-name="DejaVu Sans Book" size="8" halo-radius="0.85">[{0}]</TextSymbolizer>
+#             </Rule>'''.format(label_field)
 
 def getProj4FromShapefile(shapefile):
     '''Get epsg from shapefile'''
@@ -180,7 +185,6 @@ def getProj4FromShapefile(shapefile):
     srs.ImportFromESRI([prj_txt])
     srs.AutoIdentifyEPSG()
     return srs.ExportToProj4()
-
 
 def isFieldInShapefile(shapefile, field):
     datasource = ogr.Open(shapefile)
@@ -196,13 +200,12 @@ def isFieldInShapefile(shapefile, field):
 
 def main(shapefile, label_field=None, output="style.xml"):
 
-    getAreaStatistics(shapefile)
-
+    # getAreaStatistics(shapefile)
     projection = getProj4FromShapefile(shapefile)
 
     label_style = ''
     if label_field:
-        label_style = getLabelStyleForZooms(label_field)
+        label_style = getLabelStyleForZooms(shapefile, label_field)
 
     stylesheet = buildStylesheet(shapefile, projection, label_style)
 
